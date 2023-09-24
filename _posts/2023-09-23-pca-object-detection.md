@@ -50,8 +50,6 @@ guide_images = pipe(
     guidance_scale=8.0,
     num_inference_steps=50,
 ).images
-
-plot_images(guide_images)
 ```
 
 With this prompt we get images like this:
