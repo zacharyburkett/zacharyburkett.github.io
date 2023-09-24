@@ -6,6 +6,8 @@ domain: zburkett.io
 baseurl: ""
 url: https://zburkett.io
 
+measurement_id: G-3MM50XVYQ3
+
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
