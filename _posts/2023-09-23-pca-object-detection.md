@@ -36,7 +36,7 @@ input_image = pipe(
 
 Here we simply load an SDXL pipeline through the [huggingface](https://huggingface.co/) `diffusers` library.
 
-When we run the code above with the prompt `"A photo of a dog playing with a soccer ball in a park"` we get something that looks like the following pictures.
+When we run the code above with the prompt `"A photo of a dog playing with a soccer ball in a park"` we get something that looks like the following picture.
 
 ![AI generated picture of a dog](/assets/images/pca-object-detection/dog.png)
 
