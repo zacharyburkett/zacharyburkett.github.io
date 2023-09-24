@@ -144,7 +144,7 @@ With our nice dataset of dog vectors in hand, we can now use them when we perfor
 
 We just have to perform PCA with the new image just like we've done before, except this time concatenate the guidance vectors. We trim the output to size afterwards.
 
-In the following code use PCA on the input alongside various other guidance strategies. First we use the filtered guidance vectors, then unfiltered guidance vectors, and finally no guidance vectors. You can see that have the filtered dataset greatly improves this process.
+In the following code we use PCA on the input alongside various other guidance strategies. First we use the filtered guidance vectors, then unfiltered guidance vectors, and finally no guidance vectors. You can see that having the filtered dataset greatly improves this process.
 
 ![PCA masks of dogs](/assets/images/pca-object-detection/guidance-masks.png)
 
