@@ -27,10 +27,6 @@ sdxl_model_id = "stabilityai/stable-diffusion-xl-base-1.0"
 
 pipe = StableDiffusionXLPipeline.from_pretrained(sdxl_model_id, torch_dtype=torch.float16, variant="fp16").to("cuda")
 
-pipe.enable_vae_slicing()
-if is_xformers_available():
-    pipe.enable_xformers_memory_efficient_attention()
-
 input_image = pipe(
     prompt="A photo of a dog playing with a soccer ball in a park",
     guidance_scale=8.0,
@@ -40,7 +36,7 @@ input_image = pipe(
 
 Here we simply load an SDXL pipeline through the [huggingface](https://huggingface.co/) `diffusers` library.
 
-When we run the code above with the prompt `"A photo of a dog playing with a soccer ball in a park` we get something that looks like this:
+When we run the code above with the prompt `"A photo of a dog playing with a soccer ball in a park"` we get something that looks like the following pictures.
 
 ![AI generated picture of a dog](/assets/images/pca-object-detection/dog.png)
 
@@ -64,7 +60,7 @@ With this prompt we get images like this:
 
 When testing this with limited samples, adding `fullbody` into the prompt really helped. Gotta make sure all the relevant features are there!
 
-Now that we have our input image and guidance images, we can use DINOv2 to extract their patch features. DINOv2 patch features correspond to a 14x14 region in the input. These features are returned as a flattened tensor, and also has one addition vector for the CLS token. We're primarily focused on the patch features, so we can ditch the CLS token.
+Now that we have our input image and guidance images, we can use DINOv2 to extract their patch features. DINOv2 patch features correspond to a 14x14 region in the input. These features are returned as a flattened tensor, and also have one additional vector for the CLS token. We're primarily focused on the patch features, so we can ditch the CLS token.
 
 ```python
 from transformers import AutoImageProcessor, Dinov2Model
@@ -166,8 +162,6 @@ pca_no_guidance = thresholded_pca(input_patch_features)
 
 feature_maps = [unflatten_features(f).squeeze(0) for f in [pca_patch_features, pca_unfiltered_guidance, pca_no_guidance]]
 
-plot_images([input_image] + feature_maps, labels=["Input", "Filtered Guidance", "Unfiltered Guidance", "No Guidance"])
-
 ```
 
 You can see that having the filtered dataset greatly improves this process.
@@ -207,10 +201,6 @@ Dogs playing soccer are cool, but tigers playing it are way cooler.
 from diffusers import StableDiffusionXLInpaintPipeline
 
 pipe = StableDiffusionXLInpaintPipeline.from_pretrained(sdxl_model_id, torch_dtype=torch.float16, variant="fp16").to("cuda")
-
-pipe.enable_vae_slicing()
-if is_xformers_available():
-    pipe.enable_xformers_memory_efficient_attention()
 
 inpaint_image = pipe(
     prompt="A photo of a baby tiger playing with a soccer ball in a park",
