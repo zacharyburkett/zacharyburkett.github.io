@@ -6,7 +6,7 @@ domain: zburkett.io
 baseurl: ""
 url: https://zburkett.io
 
-measurement_id: G-3MM50XVYQ3
+google_analytics: G-3MM50XVYQ3
 
 plugins:
   - jekyll-feed
