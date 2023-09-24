@@ -144,7 +144,33 @@ With our nice dataset of dog vectors in hand, we can now use them when we perfor
 
 We just have to perform PCA with the new image just like we've done before, except this time concatenate the guidance vectors. We trim the output to size afterwards.
 
-In the following code we use PCA on the input alongside various other guidance strategies. First we use the filtered guidance vectors, then unfiltered guidance vectors, and finally no guidance vectors. You can see that having the filtered dataset greatly improves this process.
+In the following code we use PCA on the input alongside various other guidance strategies. First we use the filtered guidance vectors, then unfiltered guidance vectors, and finally no guidance vectors. 
+
+```python
+# perform combined PCA on input patches and filtered guide patches
+input_patch_features = patch_features[0].cpu()
+all_patch_features = torch.cat([input_patch_features, guide_patch_features_filtered], axis=0)
+
+# get patches with filtered example data
+pca_patch_features = thresholded_pca(
+        torch.cat([input_patch_features, guide_patch_features_filtered], axis=0)
+    )[:input_patch_features.shape[0]]
+
+# get patches with unfiltered example data
+pca_unfiltered_guidance = thresholded_pca(
+        torch.cat([input_patch_features, flat_guide_patch_features], axis=0)
+    )[:input_patch_features.shape[0]]
+
+# get patches without example data
+pca_no_guidance = thresholded_pca(input_patch_features)
+
+feature_maps = [unflatten_features(f).squeeze(0) for f in [pca_patch_features, pca_unfiltered_guidance, pca_no_guidance]]
+
+plot_images([input_image] + feature_maps, labels=["Input", "Filtered Guidance", "Unfiltered Guidance", "No Guidance"])
+
+```
+
+You can see that having the filtered dataset greatly improves this process.
 
 ![PCA masks of dogs](/assets/images/pca-object-detection/guidance-masks.png)
 
