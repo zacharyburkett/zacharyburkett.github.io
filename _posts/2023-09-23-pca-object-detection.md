@@ -19,7 +19,6 @@ All code for this project can be found [here](https://github.com/zacharyburkett/
 
 ```python
 from diffusers import StableDiffusionXLPipeline
-from diffusers.utils import is_xformers_available
 import torch
 
 img_size=1024
