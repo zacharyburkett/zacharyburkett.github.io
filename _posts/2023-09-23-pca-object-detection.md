@@ -142,7 +142,6 @@ In the following code we use PCA on the input alongside various other guidance s
 ```python
 # perform combined PCA on input patches and filtered guide patches
 input_patch_features = patch_features[0].cpu()
-all_patch_features = torch.cat([input_patch_features, guide_patch_features_filtered], axis=0)
 
 # get patches with filtered example data
 pca_patch_features = thresholded_pca(
