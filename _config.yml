@@ -10,7 +10,7 @@ google_analytics: G-3MM50XVYQ3
 
 plugins:
   - jekyll-feed
-theme: jekyll-theme-minima
+theme: jekyll-theme-minimal
 
 show_excerpts: true
 header_pages:
