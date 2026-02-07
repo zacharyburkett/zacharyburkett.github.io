@@ -30,6 +30,15 @@ jobs:
           go-version: "1.22"
           cache: true
 
+      - name: Fix wasm_exec.js path (Go version differences)
+        run: |
+          set -euo pipefail
+          GOROOT="$(go env GOROOT)"
+          if [ ! -f "${GOROOT}/lib/wasm/wasm_exec.js" ] && [ -f "${GOROOT}/misc/wasm/wasm_exec.js" ]; then
+            sed -i.bak 's|/lib/wasm/wasm_exec.js|/misc/wasm/wasm_exec.js|g' scripts/build_wasm.sh
+          fi
+        working-directory: image-zoo-src
+
       - name: Build WASM
         run: ./scripts/build_wasm.sh
         working-directory: image-zoo-src
