@@ -11,5 +11,3 @@ I'm Zachary Burkett, a software developer and ML/AI researcher. I have a particu
 This is my personal landing page, where you can find links to my socials, blog posts about projects, and other information about me.
 
 ---
-
-## Recent Posts
