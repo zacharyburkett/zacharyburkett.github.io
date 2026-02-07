@@ -17,6 +17,7 @@ remote_theme: jekyll/minima
 show_excerpts: true
 header_pages:
   - blog.md
+  - demos.md
   - about.md
 
 minima:
@@ -25,3 +26,6 @@ minima:
     - { platform: github, user_url: "https://github.com/zacharyburkett" }
     - { platform: twitter, user_url: "https://twitter.com/zburkett" }
     - { platform: rss, user_url: "feed.xml" }
+
+exclude:
+  - image-zoo-src
