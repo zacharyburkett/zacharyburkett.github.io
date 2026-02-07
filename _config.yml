@@ -2,6 +2,9 @@ title: zburkett.io
 email: z@zburkett.io
 description: >-
   My personal little corner of the internet.
+github_username: zacharyburkett
+twitter_username: zburkett
+rss: rss
 domain: zburkett.io
 baseurl: ""
 url: https://zburkett.io
@@ -20,10 +23,6 @@ header_pages:
 
 minima:
   skin: dark
-  social_links:
-    - { platform: github, user_url: "https://github.com/zacharyburkett" }
-    - { platform: twitter, user_url: "https://twitter.com/zburkett" }
-    - { platform: rss, user_url: "feed.xml" }
 
 exclude:
   - image-zoo-src
