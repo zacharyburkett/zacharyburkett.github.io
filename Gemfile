@@ -3,7 +3,6 @@ source "https://rubygems.org"
 group :jekyll_plugins do
   gem "github-pages", "~> 228"
   gem "jekyll-feed", "~> 0.12"
-  gem "jekyll-remote-theme", "~> 0.4"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

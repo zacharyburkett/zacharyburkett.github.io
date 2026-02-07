@@ -10,9 +10,7 @@ google_analytics: G-3MM50XVYQ3
 
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
-
-remote_theme: jekyll/minima
+theme: minima
 
 show_excerpts: true
 header_pages:
